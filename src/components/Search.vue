@@ -1,22 +1,24 @@
 <template>
-    <div id="app" class="row mx-md-6">
-      <pm-header />
-      <div class="col-6 offset-3">
-<!--        <pm-notifications v-show="showNotifications"> <p slot="body">Algo andubo remal</p> </pm-notifications>-->
-        <pm-notifications v-show="initial"  v-bind:class="!showNotifications ?'alert-info':'alert-danger'">
-          <p v-show="!showNotifications"  slot="body">{{searchMessage}}</p>
-          <p v-show="showNotifications" slot="body">Algo andubo remal</p>
-        </pm-notifications>
-      </div>
-      <pm-loader v-show="isLoading" />
+    <main class="row mx-md-6">
+      <transition name="move">
+        <div class="col-6 offset-3">
+  <!--        <pm-notifications v-show="showNotifications"> <p slot="body">Algo andubo remal</p> </pm-notifications>-->
+            <pm-notifications v-show="initial"  v-bind:class="!showNotifications ?'alert-info':'alert-danger'">
+
+              <p v-show="!showNotifications"  slot="body">{{searchMessage}}</p>
+              <p v-show="showNotifications" slot="body">Algo andubo remal</p>
+            </pm-notifications>
+        </div>
+      </transition>
+      <transition name="move">
+        <pm-loader v-show="isLoading" />
+      </transition>
       <div class="row col-12 mx-6" v-show="!isLoading">
         <div class="container mt-6 col-6" >
           <div class="input-group input-group-lg">
             <input class="form-control input-lg" type="text"
-                   placeholder="Nueva busqueda"  v-model="searchQuery">
+                   placeholder="Nueva busqueda"  v-model="searchQuery" v-on:keyup.enter="search">
           </div>
-<!--            <p>{{searchMessage}}</p>-->
-
         </div>
 
         <div class="col-6 mt-6">
@@ -26,25 +28,22 @@
 
         <div class="row">
           <tr class="col-md-4 mt-6" v-for="t in tracks" v-bind:key="t.id">
-            <pm-tracks v-bind:class="{ 'isActive': t.id === selectedTrack}" v-bind:track="t" v-on:select="setSelectedTrack"/>
-<!--            <td >{{t.name}} - {{ t.artists[0].name}}</td>-->
+            <pm-tracks
+              v-blur="t.preview_url"
+              v-bind:class="{ 'isActive': t.id === selectedTrack}"
+              v-bind:track="t" v-on:select="setSelectedTrack" />
+
           </tr>
 
         </div>
       </div>
 
-        <pm-footer />
-
-    </div>
+    </main>
 
 </template>
 
 <script>
 import trackService from '@/services/tracks'
-
-import PmFooter from '@/components/layout/footer'
-import PmHeader from '@/components/layout/header'
-
 import PmTracks from '@/components/Track'
 
 import PmLoader from '@/components/shared/loader'
@@ -54,8 +53,6 @@ export default {
   name: 'App',
 
   components: {
-    PmFooter,
-    PmHeader,
     PmTracks,
     PmLoader,
     PmNotifications
@@ -69,8 +66,8 @@ export default {
       isLoading: false,
       selectedTrack: '',
       showNotifications: false,
+      created: false,
       initial: false
-
     }
   },
   computed: {
@@ -81,6 +78,7 @@ export default {
     }
 
   },
+
   watch: {
     showNotifications () {
       if (this.showNotifications) {
@@ -91,6 +89,11 @@ export default {
     }
 
   },
+  // mounted () {
+  //   setTimeout(() => {
+  //     this.created = true
+  //   }, 3000)
+  // },
 
   methods: {
 
@@ -128,7 +131,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../scss/main";
 .isActive{
   border: 3px #23d160 solid;
 }

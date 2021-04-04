@@ -1,20 +1,28 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <h1>{{ msg }}</h1>
-  </div>
+    <div id="app">
+      <pm-header />
+      <router-view />
+      <pm-footer />
+
+    </div>
+
 </template>
 
 <script>
+import PmFooter from '@/components/layout/footer'
+import PmHeader from '@/components/layout/header'
+
 export default {
-  name: 'app',
-  data () {
-    return {
-      msg: 'Bienvenido al mundo de Vuejs ok'
-    }
+  name: 'App',
+
+  components: {
+    PmFooter,
+    PmHeader
   }
+
 }
 </script>
 
 <style lang="scss">
+@import "./scss/main.scss";
 </style>
