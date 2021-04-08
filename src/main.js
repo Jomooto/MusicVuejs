@@ -7,6 +7,7 @@ import VueRouter from 'vue-router'
 import routes from '@/routes'
 import MsToMm from '@/filters/ms-to-mm'
 import Blur from '@/directives/blur'
+import store from '@/store'
 
 // Import Bootstrap an BootstrapVue CSS files (order is important)
 import 'bootstrap/dist/css/bootstrap.css'
@@ -29,5 +30,6 @@ const router = new VueRouter({
 new Vue({
   el: '#app',
   render: h => h(App),
-  router: router
+  router: router,
+  store
 })

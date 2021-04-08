@@ -1,15 +1,17 @@
 <template>
     <main class="row mx-md-6">
-      <transition name="move">
+
         <div class="col-6 offset-3">
   <!--        <pm-notifications v-show="showNotifications"> <p slot="body">Algo andubo remal</p> </pm-notifications>-->
+          <transition name="move">
             <pm-notifications v-show="initial"  v-bind:class="!showNotifications ?'alert-info':'alert-danger'">
 
               <p v-show="!showNotifications"  slot="body">{{searchMessage}}</p>
               <p v-show="showNotifications" slot="body">Algo andubo remal</p>
             </pm-notifications>
+          </transition>
         </div>
-      </transition>
+
       <transition name="move">
         <pm-loader v-show="isLoading" />
       </transition>
@@ -120,6 +122,7 @@ export default {
     },
     borrar () {
       this.tracks = []
+      this.$store.commit('setTrack', {})
     },
     setSelectedTrack (id) {
       this.selectedTrack = id

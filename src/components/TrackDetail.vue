@@ -10,7 +10,7 @@
         </div>
         <div class="col-md-8">
           <div class="card-body">
-            <h5 class="card-title">{{track.name}}</h5>
+            <h5 class="card-title">{{trackTitle}}</h5>
             <p><button class="btn btn-primary btn-lg" v-on:click="selectTrack" >▶</button></p>
             <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
             <p class="card-text"><small class="text-muted">{{}}</small></p>
@@ -28,28 +28,30 @@
 import trackMixin from '@/mixins/track'
 
 import PmLoader from '@/components/shared/loader'
-import TrackService from '@/services/tracks'
+import { mapState, mapActions, mapGetters } from 'vuex'
 
 export default {
   mixins: [trackMixin],
   components: { PmLoader },
 
-  data () {
-    return {
-      track: {},
-      isLoading: false
-    }
+  computed: {
+    ...mapState(['track']),
+    ...mapGetters(['trackTitle'])
   },
   created () {
     this.isLoading = true
     const id = this.$route.params.id
-    TrackService.getById(id)
-      .then(res => {
-        this.track = res
-      })
-      .then(() => {
-        this.isLoading = false
-      })
+
+    if (!this.track || !this.track.id || this.track.id !== id) {
+      this.getTrackById({ id })
+        .then(() => {
+          console.log('Track loaded ...')
+          this.isLoading = false
+        })
+    }
+  },
+  methods: {
+    ...mapActions(['getTrackById'])
   }
 
 }
