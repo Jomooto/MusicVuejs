@@ -8,7 +8,8 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --hot --host 0.0.0.0",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
-    "start": "serve --single"
+    "start": "serve --single",
+    "vercel-build": "node ./dist/build.js"
   },
   "dependencies": {
     "axios": "^0.21.1",
