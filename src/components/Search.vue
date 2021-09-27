@@ -16,10 +16,10 @@
         <pm-loader v-show="isLoading" />
       </transition>
       <div class="row col-12 mx-6" v-show="!isLoading">
-        <div class="container mt-6 col-6" >
+        <div class="container col-12 col-md-6 mt-6 col-6" >
           <div class="input-group input-group-lg">
             <input class="form-control input-lg" type="text"
-                   placeholder="Nueva busqueda"  v-model="searchQuery" v-on:keyup.enter="search">
+              placeholder="Nueva busqueda"  v-model="searchQuery" v-on:keyup.enter="search">
           </div>
         </div>
 
