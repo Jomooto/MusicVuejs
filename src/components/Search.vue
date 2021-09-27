@@ -23,7 +23,7 @@
           </div>
         </div>
 
-        <div class="col-6 mt-6">
+        <div class="col-12 col-md-6 mt-6">
           <a class="btn btn-info btn-lg mr-2" v-on:click="search"> Buscar </a>
           <a class="btn btn-danger btn-lg" v-on:click="borrar"  > Borrar </a>
         </div>
