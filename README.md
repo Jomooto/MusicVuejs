@@ -1,4 +1,4 @@
-# music
+# platzi-music
 
 > App curso profesional vuejs
 
