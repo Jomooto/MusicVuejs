@@ -1,4 +1,4 @@
-// import platziMusicService from './platiz-music'
+// import MusicService from './platizmusic'
 import configService from './config'
 
 const axios = require('axios')

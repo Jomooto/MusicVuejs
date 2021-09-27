@@ -1,6 +1,6 @@
 <template>
 <!--  <nav class="container col-12 navbar navbar-expand-lg navbar-light">-->
-<!--    <a class="navbar-brand text-black">Platzi Music</a>-->
+<!--    <a class="navbar-brand text-black"> Music</a>-->
 <!--    <div class="collapse navbar-collapse">-->
 <!--      <div class="navbar-nav">-->
 <!--        <router-link class="nav-item nav-link" v-bind:to="{ name: 'Search'}"> Buscar </router-link>-->
@@ -13,7 +13,7 @@
 <!--  </nav>-->
   <div>
     <b-navbar toggleable="lg" type="dark" variant="dark">
-      <b-navbar-brand to="/">Platzi Music</b-navbar-brand>
+      <b-navbar-brand to="/"> Music</b-navbar-brand>
 
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
